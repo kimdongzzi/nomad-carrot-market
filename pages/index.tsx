@@ -1,11 +1,17 @@
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const goToDetail = (id: number) => {
+    router.push(`/items/${id}`);
+  };
   return (
     <div className="flex flex-col space-y-5 py-10 px-2">
       {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
         <div
           key={i}
+          onClick={() => goToDetail(i)}
           className="flex cursor-pointer justify-between border-b px-4 pb-4"
         >
           <div className="flex space-x-4">
