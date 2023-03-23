@@ -12,7 +12,7 @@ interface EnterForm {
 }
 
 const Enter: NextPage = () => {
-  const { register, watch, reset, handleSubmit } = useForm<EnterForm>();
+  const { register, reset, handleSubmit } = useForm<EnterForm>();
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => {
     setMethod("email");
@@ -64,7 +64,9 @@ const Enter: NextPage = () => {
         >
           {method === "email" ? (
             <Input
-              register={register("email")}
+              register={register("email", {
+                required: true,
+              })}
               name="email"
               label="Email address"
               type="email"
@@ -73,7 +75,9 @@ const Enter: NextPage = () => {
           ) : null}
           {method === "phone" ? (
             <Input
-              register={register("phone")}
+              register={register("phone", {
+                required: true,
+              })}
               name="phone"
               label="Phone number"
               type="number"
